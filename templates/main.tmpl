@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="{{ SITE_TAGLINE }}">
+    <title>{{ SITE_TITLE }}{% block entry %}{% ifdef TITLE %} - {{ TITLE }}{% endif %}{% endblock %}{% block listing_once %} - {{ SITE_TAGLINE }}{% endblock %}</title>
+    <link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css">
+    <link rel="stylesheet" href="{{ BASE_URL }}/assets/core.css">
+    <link rel="alternate" href="{{ BASE_URL }}/atom.xml" type="application/atom+xml" title="{{ SITE_TITLE }}" />
+  </head>
+  <body>
+    {% ifdef AUTHOR_GRAVATAR %}
+    <aside class="logo">
+      <a href="{{ BASE_URL }}{% block listing_once %}/about/{% endblock %}{% block entry %}/{% endblock %}">
+        <img src="http://www.gravatar.com/avatar/{{ AUTHOR_GRAVATAR }}.png?s=80" class="gravatar">
+      </a>
+      <span class="logo-prompt">{% block listing_once %}About the Author{% endblock %}{% block entry %}Back to Home{% endblock %}</span>
+    </aside>
+    {% endif %}
+    <main>
+      {% block listing_once %}
+      <section>
+        <ul>
+      {% endblock %}
+      {% block listing %}
+          <li>
+            <div class="post-date">
+              <span>{{ DATE_FORMATTED }}</span>
+            </div>
+            <div class="title">
+              <a href="{{ BASE_URL }}/post/{{ FILENAME }}">{{ TITLE }}</a>
+            </div>
+          </li>
+      {% endblock %}
+      {% block listing_once %}
+        </ul>
+      </section>
+      {% endblock %}
+      {% block entry %}
+      <article>
+        <div class="center">
+          <h1{% ifndef IS_POST %} class="title"{% endif %}>{{ TITLE }}</h1>
+          {% ifdef DATE_FORMATTED %}<time>{{ DATE_FORMATTED }}</time>{% endif %}
+        </div>
+        <div class="divider"></div>
+        {{ CONTENT }}
+      </article>
+      <div class="back">
+        <a href="{{ BASE_URL }}/">Back</a>
+      </div>
+      {% endblock %}
+    </main>
+  </body>
+</html>
