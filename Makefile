@@ -20,6 +20,7 @@ PAGES = \
 
 ASSETS = \
 	assets/core.css \
+	assets/gravatar_wrapper.png \
 	$(NULL)
 
 
